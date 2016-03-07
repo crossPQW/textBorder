@@ -17,6 +17,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    UIView *view = [[UIView alloc] init];
+    [self.view addSubview:view];
+    view.backgroundColor = [UIColor redColor];
+    view.frame = CGRectMake(100, 100, 100, 100);
+    
+    [self addBorderToLayer:view];
+}
+
+- (void)addBorderToLayer:(UIView *)view
+{
+    CAShapeLayer *border = [CAShapeLayer layer];
+    
+    border.strokeColor = [UIColor blackColor].CGColor;
+    
+    border.fillColor = nil;
+    
+    border.path = [UIBezierPath bezierPathWithRect:view.bounds].CGPath;
+    
+    border.frame = view.bounds;
+    
+    border.lineWidth = 1.f;
+    
+    border.lineCap = @"square";
+    
+    border.lineDashPattern = @[@4, @2];
+    
+    [view.layer addSublayer:border];
 }
 
 - (void)didReceiveMemoryWarning {
